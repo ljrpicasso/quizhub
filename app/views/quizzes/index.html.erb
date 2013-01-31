@@ -1,47 +1,48 @@
-<h1><%= @header_text %></h1>
+<h3><%= @header_text %></h3>
 <%#= link_to "Hot", { :action => 'submissions', :order => 'hot' } %>
 <%#= link_to "New", { :action => 'submissions', :order => 'new' } %>
 <br />
 
-<table>
-  <tr>
-    <th>+</th>
-    <th>-</th>
-    <th>Name</th>
-    <th>Points</th>
-    <th>Description</th>
-    <th>Source</th>
-    <th>Posted</th>
-  </tr>
+  <table class="twelve">
+    <thead>
+      <tr>
+        <th>Vote</th>
+        <th>Points</th>
+        <th>Name and Description</th>
+        <th>Source</th>
+      </tr>
+  </thead>
   <% for quiz in @quizzes %>
     <tr>
-      <td><%= link_to "Up",
+      <td>
+        <ul class="button-group radius">
+        <li class="button success tiny radius"><%= link_to "Up",
           :url => { :action => 'modify_points',
                     :id => quiz.id,
                     :by => 1 },
           :remote => true,
-          :update => "quiz" + quiz.id.to_s %>
-      </td>
-      <td><%= link_to "Down",
+          :update => "quiz" + quiz.id.to_s %></li>
+
+        <li class="button alert tiny radius"><%= link_to "Down",
           :url => { :action => 'modify_points',
                     :id => quiz.id,
                     :by => -1 },
           :remote => true,
-          :update => "quiz" + quiz.id.to_s %>
+          :update => "quiz" + quiz.id.to_s %></li>
+        </ul>
       </td>
-      <td><%= quiz.name %></td>
       <td>
         <span id="quiz<%= quiz.id.to_s %>">
           <%= quiz.points %>
         </span>
       </td>
-      <td><%= quiz.description %></td>
-      <td><%= quiz.source %></td>
-      <td><%= time_ago_in_words quiz.created_at %> ago</td>
+      <td><b><%= quiz.name %></b><br />
+        <i><%= quiz.description %></i></td>
+      <td><%= quiz.source %><br />
+        <i><%= time_ago_in_words quiz.created_at %> ago</i></td>
     </tr>
   <% end %>
-</table>
-
+  </table>
 <br />
 <%#<%= link_to 'Previous page', { :page => @quiz_pages.current.previous } if @quiz_pages.current.previous %>
 <%#<%= link_to 'Next page', { :page => @quiz_pages.current.next } if @quiz_pages.current.next %>
