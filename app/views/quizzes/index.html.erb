@@ -1,12 +1,11 @@
 <h3><%= @header_text %></h3>
-<%#= link_to "Hot", { :action => 'submissions', :order => 'hot' } %>
-<%#= link_to "New", { :action => 'submissions', :order => 'new' } %>
+<%= link_to "Hot", { :method => 'submissions', :order => 'hot' } %>
+<%= link_to "New", { :method => 'submissions', :order => 'new' } %>
 <br />
 
   <table class="twelve">
     <thead>
       <tr>
-        <th>Vote</th>
         <th>Points</th>
         <th>Name and Description</th>
         <th>Source</th>
@@ -15,15 +14,21 @@
   <% for quiz in @quizzes %>
     <tr>
       <td>
+        <span id="quiz<%= quiz.id.to_s %>">
+          <%= quiz.points %>
+        </span>
+      </td>
+      <td><b><%= quiz.name %></b><br />
+        <i><%= quiz.description %></i>
         <ul class="button-group radius">
-        <li class="button success tiny radius"><%= link_to "Up",
+        <li class="button tiny radius"><%= link_to "Up",
           :url => { :action => 'modify_points',
                     :id => quiz.id,
                     :by => 1 },
           :remote => true,
           :update => "quiz" + quiz.id.to_s %></li>
 
-        <li class="button alert tiny radius"><%= link_to "Down",
+        <li class="button tiny radius"><%= link_to "Down",
           :url => { :action => 'modify_points',
                     :id => quiz.id,
                     :by => -1 },
@@ -31,13 +36,6 @@
           :update => "quiz" + quiz.id.to_s %></li>
         </ul>
       </td>
-      <td>
-        <span id="quiz<%= quiz.id.to_s %>">
-          <%= quiz.points %>
-        </span>
-      </td>
-      <td><b><%= quiz.name %></b><br />
-        <i><%= quiz.description %></i></td>
       <td><%= quiz.source %><br />
         <i><%= time_ago_in_words quiz.created_at %> ago</i></td>
     </tr>
