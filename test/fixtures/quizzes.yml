@@ -1,0 +1,11 @@
+one:
+  name: MyString
+  points: 1
+  description: MyText
+  source: MyString
+
+two:
+  name: MyString
+  points: 1
+  description: MyText
+  source: MyString
