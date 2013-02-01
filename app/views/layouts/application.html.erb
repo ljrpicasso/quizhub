@@ -18,13 +18,12 @@
     <ul class="left">
       <li><a href="#">Rules</a></li>
       <li><a href="#">Archives</a></li>
-      <li><a href="#">Users</a></li>
     </ul>
     <ul class="right">
       <li class="has-dropdown">
         <a href="#">Admin</a>
         <ul class="dropdown">
-          <li><a href="#">Dropdown link</a></li>
+          <li><a href="#">Users</a></li>
         </ul>
       </li>
     </ul>
@@ -58,11 +57,9 @@
 
       <h5>Categories</h5>
       <ul class="side-nav">
-        <li><a href="#">News</a></li>
-        <li><a href="#">Code</a></li>
-        <li><a href="#">Design</a></li>
-        <li><a href="#">Fun</a></li>
-        <li><a href="#">Ducks</a></li>
+        <% for cat in Category.all %>        
+          <li><a href="#"><%= cat.name %></a></li>
+        <% end %>
       </ul>
  
     </aside>
@@ -84,8 +81,8 @@
         </div>
         <div class="six columns">
           <ul class="link-list right">
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 2</a></li>
+            <li><a href="https://github.com/ljrpicasso/quizhub">Github</a></li>
+            <li><a href="http://foundation.zurb.com/docs/index.php">Foundation</a></li>
             <li><a href="#">Link 3</a></li>
             <li><a href="#">Link 4</a></li>
           </ul>

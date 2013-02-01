@@ -1,7 +1,16 @@
 class QuizzesController < ApplicationController
   def index
-    #@quizzes = Quiz.all
-    submissions
+    ordering = params[:order] || 'hot'
+    order = case ordering
+            when 'hot' then 'points DESC'
+            when 'new' then 'created_at DESC'
+            end
+    #@quiz_pages, @quizzes = paginate :quizzes, :order => order, :per_page => 20
+    @quizzes = Quiz.all(:order => order)
+    @header_text = case ordering
+                   when 'hot' then 'Top rated submissions'
+                   when 'new' then 'Latest submissions'
+                   end
   end
 
   def new
@@ -17,23 +26,16 @@ class QuizzesController < ApplicationController
     end
   end
 
-  def submissions
-    ordering = params[:order] || 'hot'
-    order = case ordering
-            when 'hot' then 'points DESC'
-            when 'new' then 'created_at DESC'
-            end
-    #@quiz_pages, @quizzes = paginate :quizzes, :order => order, :per_page => 20
-    @quizzes = Quiz.all(:order => order)
-    @header_text = case ordering
-                   when 'hot' then 'Top rated submissions'
-                   when 'new' then 'Latest submissions'
-                   end
+  def update
+    respond_to do |format|
+      format.js {
+        quiz = Quiz.find(params[:id])
+        new_points = quiz.points + params[:point].to_i if params[:point] =~ /[+|-]?1/
+        quiz.update_attribute :points, new_points
+        @quiz_points = new_points
+        @quiz_id = quiz.id
+      }
+    end
   end
 
-  def modify_points
-    @quiz = Quiz.find(params[:id])
-    @quiz.update_attribute :points, @quiz.points + params[:by].to_i #if params[:by] =~ /[+|-]?1/
-    render_text @quiz.points
-  end
 end
