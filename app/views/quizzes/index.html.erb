@@ -1,4 +1,4 @@
-<h3><%= @header_text %></h3>
+<h3><%= @header_text %><aside><small><%= @subheader_text %></small></aside></h3>
 List by: <%= link_to "Hot", quizzes_path({ :order => 'hot' }) %>
 <%= link_to "New", quizzes_path({ :order => 'new' }) %>
 <br />

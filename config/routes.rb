@@ -1,4 +1,7 @@
 Quizhub::Application.routes.draw do
+  resources :categories
+
+
   resources :quizzes
   match '/quizzes/:id/points/:point' => 'quizzes#update', :as => 'update_points'
   

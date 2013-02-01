@@ -1,5 +1,11 @@
 class QuizzesController < ApplicationController
   def index
+    selected = params[:select] || 'all'
+    @subheader_text = case selected
+                      when 'all' then 'All Quizzes'
+                      else "Only #{ params[:select] } quizzes"
+                      end
+
     ordering = params[:order] || 'hot'
     order = case ordering
             when 'hot' then 'points DESC'

@@ -24,6 +24,7 @@
         <a href="#">Admin</a>
         <ul class="dropdown">
           <li><a href="#">Users</a></li>
+          <li><%= link_to "Categories", categories_path %></li>
         </ul>
       </li>
     </ul>
@@ -58,7 +59,7 @@
       <h5>Categories</h5>
       <ul class="side-nav">
         <% for cat in Category.all %>        
-          <li><a href="#"><%= cat.name %></a></li>
+          <li><%= link_to "#{cat.name}", quizzes_path({ :order => 'hot', :select => "#{cat.name}" }) %></li>
         <% end %>
       </ul>
  
@@ -76,10 +77,16 @@
     <div class="twelve columns">
       <hr />
       <div class="row">
-        <div class="six columns">
+        <div class="four columns">
           <p>&copy; Copyright no one at all. Go to town.</p>
         </div>
-        <div class="six columns">
+        <div class="four columns">
+          <blockquote>
+            <p>I do not fear computers. I fear the lack of them.
+              <cite>Isaac Asimov</cite></p>
+          </blockquote>
+        </div>
+        <div class="four columns">
           <ul class="link-list right">
             <li><a href="https://github.com/ljrpicasso/quizhub">Github</a></li>
             <li><a href="http://foundation.zurb.com/docs/index.php">Foundation</a></li>
