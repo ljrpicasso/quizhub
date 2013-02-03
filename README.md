@@ -18,3 +18,5 @@ Models to come:
 - votes (user, quiz, up/down) - allow modification/swap
 - user assigned to "source"
 -------------------------------------------------------------------------------------
+
+To update db/model annotations -- 'bundle exec annotate --position before' 
