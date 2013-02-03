@@ -43,3 +43,5 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'debugger'
 
 gem "mocha", :group => :test
+gem 'annotate', '~> 2.4.1.beta'
+
