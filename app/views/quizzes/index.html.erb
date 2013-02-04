@@ -37,7 +37,6 @@ List by: <%= link_to "Hot", quizzes_path({ :order => 'hot' }) %>
     </tr>
   <% end %>
   </table>
-<br />
-<%#<%= link_to 'Previous page', { :page => @quiz_pages.current.previous } if @quiz_pages.current.previous %>
-<%#<%= link_to 'Next page', { :page => @quiz_pages.current.next } if @quiz_pages.current.next %>
-<p><%= link_to "New Quiz", new_quiz_path %></p>
+  <%= will_paginate @quizzes, :style => 'color:blue' %>
+<hr />
+<p><%= link_to "New Quiz", new_quiz_path, :class => "tiny radius button" %></p>

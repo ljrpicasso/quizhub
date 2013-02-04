@@ -46,3 +46,5 @@ gem "mocha", :group => :test
 gem 'annotate', '~> 2.4.1.beta'
 gem 'high_voltage'
 gem 'slim'
+gem 'will_paginate', '~> 3.0.0'
+
