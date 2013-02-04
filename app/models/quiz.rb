@@ -14,4 +14,13 @@
 class Quiz < ActiveRecord::Base
   attr_accessible :name, :points, :description, :source
   has_and_belongs_to_many :categories
+  after_initialize :init
+
+  def init
+    self.points  ||= 0
+    self.source  ||= "???"
+    self.archived  = true if self.archived.nil?
+    self.active    = true if self.active.nil?
+  end
+
 end

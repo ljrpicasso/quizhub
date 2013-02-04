@@ -11,13 +11,13 @@
 <!-- Nav Bar -->
 <nav class="top-bar">
   <ul>
-    <li class="name"><h1><a href="#">QuizHub</a></h1></li>
+    <li class="name"><h1><a href="<%= quizzes_path({ :archive => 0 }) %>">QuizHub</a></h1></li>
     <li class="toggle-topbar"><a href="#"></a></li>
   </ul>
   <section>
     <ul class="left">
       <li><a href="#">Rules</a></li>
-      <li><a href="/quizzes">Archives</a></li>
+      <li><a href="<%= quizzes_path({ :archive => 1 }) %>">Archives</a></li>
     </ul>
     <ul class="right">
       <% if current_user %>

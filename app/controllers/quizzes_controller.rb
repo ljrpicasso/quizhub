@@ -1,5 +1,10 @@
 class QuizzesController < ApplicationController
+  before_filter :login_required, :except => [:index]
+
   def index
+    archived = params[:archive] || '0' 
+    archive_text = ' '
+    archive_text = '[Archives]' if archived == '1'
     selected = params[:select] || 'all'
     @subheader_text = case selected
                       when 'all' then 'All Quizzes'
@@ -11,16 +16,20 @@ class QuizzesController < ApplicationController
             when 'hot' then 'points DESC'
             when 'new' then 'created_at DESC'
             end
-    #@quiz_pages, @quizzes = paginate :quizzes, :order => order, :per_page => 20
     @quizzes = Quiz.all(:order => order)
+       #  .where("archived = #{archived == '1' ? 'true' : 'false'}") 
     @header_text = case ordering
-                   when 'hot' then 'Top rated submissions'
-                   when 'new' then 'Latest submissions'
+                   when 'hot' then "Top rated submissions #{archive_text}"
+                   when 'new' then "Latest submissions #{archive_text}"
                    end
   end
 
   def new
     @quiz = Quiz.new
+    @quiz.points = 0
+    @quiz.archived = false
+    @quiz.active = false
+    @quiz.source = current_user.username
   end
 
   def create
