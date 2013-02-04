@@ -10,5 +10,6 @@
  *
  *= require_self
  *= require foundation_and_overrides
+ *= require general_enclosed_foundicons
  *= require_tree .
  */

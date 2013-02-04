@@ -9,6 +9,8 @@
 #  source      :string(255)
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
+#  archived    :boolean
+#  active      :boolean
 #
 
 class Quiz < ActiveRecord::Base
