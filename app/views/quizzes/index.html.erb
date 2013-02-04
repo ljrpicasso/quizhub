@@ -1,6 +1,14 @@
 <h3><%= @header_text %><aside><small><%= @subheader_text %></small></aside></h3>
-List by: <%= link_to "Hot", quizzes_path({ :order => 'hot' }) %>
-<%= link_to "New", quizzes_path({ :order => 'new' }) %>
+
+<div class="row">
+  <div class="six columns">
+    List by: <%= link_to "Hot", quizzes_path({ :order => 'hot' }) %>
+    <%= link_to "New", quizzes_path({ :order => 'new' }) %>
+  </div>
+  <div class="six columns" align="right">
+    <%= page_entries_info @posts %>
+  </div>
+</div>
 <br />
 
   <table class="twelve">
