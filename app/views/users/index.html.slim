@@ -1,0 +1,17 @@
+h3 Users
+
+table
+  tr
+    th User Name
+    th Email
+    th
+    th
+  - for user in @users do
+    tr 
+      td #{user.username}
+      td #{user.email}
+      td #{link_to 'Edit', edit_user_path(user)} <i class="foundicon-edit">
+      td #{link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }} <i class="foundicon-remove">
+
+| #{link_to 'New User', new_user_path, :class => "tiny radius button"}
+
