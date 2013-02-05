@@ -16,7 +16,8 @@
       <tr>
         <th class="two">Points</th>
         <th class="six">Name and Description</th>
-        <th class="four">Source</th>
+        <th class="three">Source</th>
+        <th class="onr">.</th>
       </tr>
   </thead>
   <% for quiz in @quizzes %>
@@ -42,6 +43,7 @@
       </td>
       <td><%= quiz.source %><br />
         <i><%= time_ago_in_words quiz.created_at %> ago</i></td>
+      <td><%= link_to "Edit", edit_quiz_path(quiz.id) %></td>
     </tr>
   <% end %>
   </table>

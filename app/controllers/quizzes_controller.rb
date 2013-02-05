@@ -35,6 +35,10 @@ class QuizzesController < ApplicationController
     @quiz.source = current_user.username
   end
 
+  def edit
+    @quiz = Quiz.find(params[:id])
+  end
+
   def create
     @quiz = Quiz.new(params[:quiz])
     if @quiz.save
