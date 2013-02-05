@@ -63,12 +63,14 @@
         <a href="#">Read More &rarr;</a>
       </div>
 
-      <h5>Categories</h5>
-      <ul class="side-nav">
-        <% for cat in Category.all %>        
-          <li><%= link_to "#{cat.name}", quizzes_path({ :order => 'hot', :select => "#{cat.name}" }) %></li>
-        <% end %>
-      </ul>
+      <div class="panel">
+        <h5>Categories</h5>
+        <ul class="side-nav">
+          <% for cat in Category.all %>        
+            <li><%= link_to "#{cat.name}", quizzes_path({ :order => 'hot', :select => "#{cat.name}" }) %></li>
+          <% end %>
+        </ul>
+      </div>
  
     </aside>
  

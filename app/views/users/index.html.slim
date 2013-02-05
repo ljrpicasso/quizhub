@@ -10,8 +10,8 @@ table
     tr 
       td #{user.username}
       td #{user.email}
-      td #{link_to 'Edit', edit_user_path(user)} <i class="foundicon-edit">
-      td #{link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }} <i class="foundicon-remove">
+      td #{link_to 'Edit', edit_user_path(user)} <i class="general foundicon-edit">
+      td #{link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }} <i class="general foundicon-remove">
 
 | #{link_to 'New User', new_user_path, :class => "tiny radius button"}
 
