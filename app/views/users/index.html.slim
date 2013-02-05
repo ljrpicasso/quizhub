@@ -2,10 +2,9 @@ h3 Users
 
 table
   tr
-    th User Name
-    th Email
-    th
-    th
+    th <span class="secondary radius label">User Name</span>
+    th <span class="secondary radius label">Email</span>
+    th colspan="2" <span class="secondary radius label">Actions</span>
   - for user in @users do
     tr 
       td #{user.username}

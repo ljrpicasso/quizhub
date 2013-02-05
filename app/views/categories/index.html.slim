@@ -2,9 +2,8 @@ h3 Categories
 
 table
   tr
-    th Category Name
-    th 
-    th
+    th <span class="secondary radius label">Category Name</span>
+    th colspan="2" <span class="secondary radius label">Actions</span> 
   - for category in @categories do
     tr 
       td #{category.name}

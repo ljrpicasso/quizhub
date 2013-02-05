@@ -1,6 +1,4 @@
 Quizhub::Application.routes.draw do
-  resources :releases
-
 
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
@@ -16,6 +14,7 @@ Quizhub::Application.routes.draw do
 
   resources :categories
 
+  resources :releases
 
   resources :quizzes
   match '/quizzes/:id/points/:point' => 'quizzes#update', :as => 'update_points'
