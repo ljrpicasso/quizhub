@@ -10,7 +10,7 @@ div class="row"
     br
     br
     br
-    div class="radius button small alert" Email me
+    == link_to "Email me", "/releases/send_quiz_to_user/#{current_user.id}", :class => "radius button small alert"
   div class="seven columns"
     p Bacon ipsum dolor sit amet doner in ham hock flank ut. Deserunt pork belly magna tri-tip, sausage doner cupidatat pork chop spare ribs eu brisket ut. Reprehenderit beef ribs capicola spare ribs, dolore meatloaf shankle. Short loin commodo qui pastrami.
 
@@ -18,4 +18,4 @@ div class="row"
 
     p Ullamco shoulder pork sausage pancetta dolor qui spare ribs consectetur. Commodo tail consectetur tongue, in cillum fugiat fatback pancetta tempor quis elit pork loin ut. Salami consectetur nisi swine, sint jowl chuck kielbasa prosciutto aliqua in enim fatback. Irure t-bone tongue, quis brisket ullamco fugiat ribeye. Sint ut ham aliquip shoulder nostrud deserunt voluptate pork loin. Officia incididunt adipisicing turkey.
 
-
+    div class="panel radius" Categories go here

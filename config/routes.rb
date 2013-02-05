@@ -14,6 +14,7 @@ Quizhub::Application.routes.draw do
 
   resources :categories
 
+  match '/releases/send_quiz_to_user/:id' => 'releases#send_quiz_to_user'
   resources :releases
 
   resources :quizzes

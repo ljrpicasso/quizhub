@@ -164,6 +164,7 @@ DEPENDENCIES
   heroku
   high_voltage
   jquery-rails
+  mail
   mocha
   nifty-generators
   pg
