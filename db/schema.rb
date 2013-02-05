@@ -11,10 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130204031313) do
+ActiveRecord::Schema.define(:version => 20130205192227) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "quiz_id"
+    t.text     "commentary"
+    t.boolean  "approved"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -36,6 +45,24 @@ ActiveRecord::Schema.define(:version => 20130204031313) do
     t.datetime "updated_at",  :null => false
     t.boolean  "archived"
     t.boolean  "active"
+  end
+
+  create_table "releases", :force => true do |t|
+    t.integer  "quiz_id"
+    t.date     "release_date"
+    t.date     "due_date"
+    t.boolean  "active"
+    t.integer  "released_by"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "results", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "quiz_id"
+    t.string   "answer_url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
