@@ -94,10 +94,10 @@ class QuizzesController < ApplicationController
         end
       }
       format.js {
-        new_points = quiz.points + params[:point].to_i if params[:point] =~ /[+|-]?1/
-        quiz.update_attribute :points, new_points
+        new_points = @quiz.points + params[:point].to_i if params[:point] =~ /[+|-]?1/
+        @quiz.update_attribute :points, new_points
         @quiz_points = new_points
-        @quiz_id = quiz.id
+        @quiz_id = @quiz.id
       }
     end
   end
