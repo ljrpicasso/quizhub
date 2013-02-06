@@ -14,8 +14,10 @@
 #
 
 class Quiz < ActiveRecord::Base
-  attr_accessible :name, :points, :description, :source
-  has_and_belongs_to_many :categories
+  attr_accessible :name, :points, :description, :source, :category_attributes, :quiz_cat_attributes, :category_ids
+  has_many :categories, :through => :quiz_cats
+  has_many :quiz_cats
+  accepts_nested_attributes_for :categories, :quiz_cats
   after_initialize :init
 
   def init
@@ -23,6 +25,21 @@ class Quiz < ActiveRecord::Base
     self.source  ||= "???"
     self.archived  = true if self.archived.nil?
     self.active    = true if self.active.nil?
+  end
+
+  def category_list
+    cl = ' '
+    qc = QuizCat.find_all_by_quiz_id(id)
+    qc.each do |c|
+      if cl.length > 1
+        cl << ", "
+      end
+      cl << Category.find(c.category_id).name
+    end
+    if cl == ' '
+      cl = 'none specified'
+    end
+    cl
   end
 
 end

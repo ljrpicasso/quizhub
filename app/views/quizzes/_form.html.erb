@@ -8,7 +8,23 @@
     <%= f.label :description %><br />
     <%= f.text_area :description, :rows=>5 %>
   </p>
-  <div class="alert-box secondary">Categories go here</div>
-  <p><%= f.submit "Save", :class => "tiny radius button" %>
-  <%= f.button "Activate", :class => "tiny radius button alert", :action => "activate" %></p>
+  <div class="alert-box secondary">
+    <h4>Categories</h4>
+    <% l = 1 %>
+    <div class="row">
+      <% for category in Category.all %>
+        <div class="three columns">
+          <%= check_box_tag 'quiz[category_ids][]', category.id,
+            @quiz.categories.include?(category) %>
+          <%=h category.name %>
+        </div>
+        <% if l == 4 then %>
+          </div><div class="row">
+        <% end %>
+        <% l = (l==4) ? 1 : l+1 %>
+      <% end %>
+      <%= hidden_field_tag 'quiz[category_ids][]', '' %>
+    </div>
+  </div>
+  <p><%= f.submit "Save", :class => "tiny radius button" %></p>
 <% end %>

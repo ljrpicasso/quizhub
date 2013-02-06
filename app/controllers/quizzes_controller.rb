@@ -16,11 +16,23 @@ class QuizzesController < ApplicationController
             when 'hot' then 'points DESC'
             when 'new' then 'created_at DESC'
             end
-    @quizzes = Quiz.paginate(:page => params[:page], 
-                             :per_page => 10,
-                             :order => order)
-    #@quizzes = Quiz.all(:order => order)
-       #  .where("archived = #{archived == '1' ? 'true' : 'false'}") 
+
+    # :conditions => ["loc.updated_at < ?", params[:date]],
+    if archived == 1 then
+      conditions = "archived = true"
+    end
+
+    if conditions.blank?
+      @quizzes = Quiz.paginate(:page => params[:page], 
+                               :per_page => 10,
+                               :order => order)
+    else
+      @quizzes = Quiz.paginate(:page => params[:page], 
+                               :per_page => 10,
+                               :order => order,
+                               :conditions => ["#{conditions}"] )
+    end
+
     @header_text = case ordering
                    when 'hot' then "Top rated submissions #{archive_text}"
                    when 'new' then "Latest submissions #{archive_text}"
@@ -72,9 +84,16 @@ class QuizzesController < ApplicationController
   end
 
   def update
+    @quiz = Quiz.find(params[:id])
     respond_to do |format|
+      format.html {
+        if @quiz.update_attributes(params[:quiz])
+          redirect_to @quiz, notice: 'Quiz was successfully updated.'
+        else
+          render action: "edit"
+        end
+      }
       format.js {
-        quiz = Quiz.find(params[:id])
         new_points = quiz.points + params[:point].to_i if params[:point] =~ /[+|-]?1/
         quiz.update_attribute :points, new_points
         @quiz_points = new_points

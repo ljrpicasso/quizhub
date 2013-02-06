@@ -4,31 +4,78 @@
   <%= @quiz.name %></h3>
 </p>
 
-<p>
   <div class="panel radius">
     <%= @quiz.description %>
   </div>
-</p>
 
-<p>
-  <b>Release date:</b>
-  <%= @release.release_date %>
-</p>
+  <div class="row">
+    <div class="three columns">
+      <p><b>Release date:</b></p>
+    </div>
+    <div class="nine columns">
+      <% if @quiz.active %>
+        <%= @release.release_date %>
+      <% else %>
+        Unreleased
+      <% end %>
+    </div>
+  </div>
 
-<p>
-  <b>Due date:</b>
-  <%= @release.due_date %>
-</p>
+  <div class="row">
+    <div class="three columns">
+      <p><b>Released by:</b></p>
+    </div>
+    <div class="nine columns">
+      <% if @quiz.active %>
+        <%= User.find(@release.released_by.to_i).username %>
+      <% else %>
+        Unreleased
+      <% end %>
+    </div>
+  </div>
 
-<p>
-  <div class="alert-box success">Active</div>
-</p>
+  <div class="row">
+    <div class="three columns">
+      <p><b>Due date:</b></p>
+    </div>
+    <div class="nine columns">
+      <% if @quiz.active %>
+        <%= @release.due_date  %>
+      <% else %>
+        Unreleased
+      <% end %>
+    </div>
+  </div>
 
-<p>
-  <b>Released by:</b>
-  <%= User.find(@release.released_by.to_i).username %>
-</p>
+  <div class="row">
+    <div class="three columns">
+      <p><b>Categories:</b></p>
+    </div>
+    <div class="nine columns">
+      <ul>
+        <% @quiz.categories.each do |c| %>
+          <li class="button small secondary"><%= c.name %></li>
+        <% end %> 
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="three columns">
+    </div>
+    <div class="nine columns">
+      <% if @quiz.active %>
+        <div class="alert-box success">Active</div>
+      <% else %>
+        <% if @quiz.archived %>
+          <div class="alert-box secondary">Archived... had my turn already!</div>
+        <% else %>
+          <div class="alert-box">Waiting for my turn</div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 
 
-<%= link_to 'Edit', edit_release_path(@release), :class => "tiny radius button" %> |
+<%= link_to 'Edit', edit_quiz_path(@quiz.id), :class => "tiny radius button" %> |
 <%= link_to 'Back', quizzes_path %>

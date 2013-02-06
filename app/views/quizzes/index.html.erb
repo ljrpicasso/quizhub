@@ -39,7 +39,8 @@
           :update => "quiz" + quiz.id.to_s %></span>
       </td>
       <td><b><%= quiz.name %></b><br />
-        <i><%= quiz.description %></i>
+        <i><%= quiz.description %></i><br />
+        <div class="cat-list">Categories: <%= quiz.category_list %></div>
       </td>
       <td><%= quiz.source %><br />
         <i><%= time_ago_in_words quiz.created_at %> ago</i></td>

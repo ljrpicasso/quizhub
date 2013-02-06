@@ -10,5 +10,6 @@
 
 class Category < ActiveRecord::Base
   attr_accessible :name
-  has_many :quizzes
+  has_many :quiz_cats
+  has_many :quizzes, :through => :quiz_cats
 end
