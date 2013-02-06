@@ -39,6 +39,29 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
   end
 
+  def activate
+    @quiz = Quiz.find(params[:id])
+    @quiz.active = false
+    @quiz.update_attribute :points, @quiz.active
+    @quiz.save
+
+    Release.all.update_attribute :active, false
+    @release = Release.new
+    @release.release_date = Date.today
+    @release.due_date = Date.today + 7
+    @release.active = true
+    @release.quiz_id = params[:id]
+    @release.released_by = current_user.id
+    @release.save
+
+    render :action => 'show'
+  end
+
+  def show
+    @quiz = Quiz.find(params[:id])
+    @release = Release.find_by_quiz_id(@quiz.id)    
+  end
+
   def create
     @quiz = Quiz.new(params[:quiz])
     if @quiz.save

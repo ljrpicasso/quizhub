@@ -9,5 +9,6 @@
     <%= f.text_area :description, :rows=>5 %>
   </p>
   <div class="alert-box secondary">Categories go here</div>
-  <p><%= f.submit "Save", :class => "tiny radius button" %></p>
+  <p><%= f.submit "Save", :class => "tiny radius button" %>
+  <%= f.button "Activate", :class => "tiny radius button alert", :action => "activate" %></p>
 <% end %>
