@@ -7,7 +7,8 @@ table
   - for category in @categories do
     tr 
       td #{category.name}
-      td #{link_to 'Edit', edit_category_path(category)} <i class="general foundicon-edit">
+      td #{link_to 'Edit <i class="general foundicon-edit"></i>'.html_safe, edit_category_path(category)}
+
       td #{link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' }} <i class="general foundicon-remove">
 
 | #{link_to 'New Category', new_category_path, :class => "tiny radius button"}
