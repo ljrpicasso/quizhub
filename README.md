@@ -45,6 +45,7 @@ Other features:
 x Pagination (will_paginate gem)
 x Static pages (high_voltage gem)
 x Slim templates (some complete...)
+x Better_Errors and RailsPanel gems for debugging (RailsCasts #402)
 
 -------------------------------------------------------------------------------------
 
