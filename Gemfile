@@ -8,6 +8,7 @@ gem 'rails', '3.2.11'
 #gem 'sqlite3'
 gem 'pg'
 gem 'zurb-foundation'
+gem 'simple_form'
 
 group :development do
   gem "nifty-generators"

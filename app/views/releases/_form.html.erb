@@ -1,4 +1,5 @@
-<%= form_for(@release) do |f| %>
+<div class="six columns">
+  <%= simple_form_for(@release) do |f| %>
   <% if @release.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@release.errors.count, "error") %> prohibited this release from being saved:</h2>
@@ -12,26 +13,29 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :quiz_id %><br />
-    <%= f.number_field :quiz_id %>
+    <%= f.label "Quiz" %><br />
+    <%= f.collection_select :quiz_id, Quiz.where("archived is false").order("id desc"), :id, :name %>
   </div>
-  <div class="field">
-    <%= f.label :release_date %><br />
-    <%= f.date_select :release_date %>
-  </div>
-  <div class="field">
-    <%= f.label :due_date %><br />
-    <%= f.date_select :due_date %>
-  </div>
+
+  <fieldset>
+    <legend>Release Info</legend>
+    <div class="field">
+      <%= f.input :release_date, :as => :datepicker, :default => Date.today %>
+    </div>
+    <div class="field">
+      <%= f.input :due_date, :as => :datepicker %>
+    </div>
+    <div class="field">
+      <%= f.label :released_by %><br />
+      <%= f.collection_select :released_by, User.all, :id, :username %>
+    </div>
+  </fieldset>
   <div class="field">
     <%= f.label :active %><br />
     <%= f.check_box :active %>
-  </div>
-  <div class="field">
-    <%= f.label :released_by %><br />
-    <%= f.number_field :released_by %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div>
